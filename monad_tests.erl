@@ -3,7 +3,7 @@
 -compile(export_all).
 
 -import(monad_transform, [transform_node/3, transform_nodes/2, transform_function/2]).
--import(monad_transform, [transform_module/1]).
+-import(monad_transform, [parse_transform/2]).
 
 %%  return({A,B}) == parser:return({A,B})
 transform_return_test() ->
@@ -141,7 +141,7 @@ transform_module_test() ->
                                  [{tuple,9,
                                    [{var,9,'A'},{var,9,'B'}]}]}]}]}}]}]}]}}]}]}]},
               {eof,10}],
-  case transform_module(Module) of
+  case parse_transform(Module, nil) of
     Expected -> ok;
     Failed   ->
       io:format("~p~n", [Expected]),
