@@ -12,8 +12,8 @@ expr() ->
 %% The above should be transformed to this
 %%
 %% expr() ->
-%%   bind(char($a), fun (A) ->
-%%     bind(char($b), fun (B) ->
-%%       return({A,B})
+%%   parser:bind(char($a), fun (A) ->
+%%     parser:bind(char($b), fun (B) ->
+%%       parser:return({A,B})
 %%     end)
 %%   end).

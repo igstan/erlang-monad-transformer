@@ -14,7 +14,7 @@ transform_return_test() ->
   Transformed = transform_node(Return, nil, parser),
   ok.
 
-%% A = char($a) == bind(char($a), fun (A) -> ... end)
+%% A = char($a) == parser:bind(char($a), fun (A) -> ... end)
 transform_bind_test() ->
   Match = {match,9,{var,9,'A'},{call,9,{atom,9,char},[{char,9,98}]}},
   Transformed = [{call,9,
@@ -40,8 +40,8 @@ transform_bind_test() ->
 %%
 %% must become...
 %%
-%% bind(char($a), fun (A)
-%%   return({A,B})
+%% parser:bind(char($a), fun (A)
+%%   parser:return({A,B})
 %% end)
 transform_bind_and_return_test() ->
   Input = [{match,10,{var,10,'B'},{call,10,{atom,10,char},[{char,10,98}]}},
